@@ -30,7 +30,7 @@ pipenv shell
 pip install -r requirements.txt
 ```
 
-### 4 Installing MYSQL
+### 4 Installing MYSQL (If not installed)
 
 ```bash
 sudo apt update
