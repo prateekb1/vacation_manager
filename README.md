@@ -106,6 +106,7 @@ mysql> show databases;
 - Inside settings.py file go to line where `DATABASE` is mentioned
 - Replace details in this with yours:
 
+```bash
 DATABASES = {
 'default': {
 'ENGINE': 'django.db.backends.mysql',
@@ -116,6 +117,7 @@ DATABASES = {
 'PORT': '3306',
 }
 }
+```
 
 ### 8 Running on server
 
