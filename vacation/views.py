@@ -3,8 +3,8 @@ from rest_framework import generics
 from vacation.models import Vacation
 from vacation.serializers import VacationSerializer
 from django.shortcuts import render
-from vacation.models import Vacation
 import datetime
+
 
 class VacationList(generics.ListCreateAPIView):
     queryset = Vacation.objects.all()
@@ -14,8 +14,8 @@ class VacationList(generics.ListCreateAPIView):
 class VacationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Vacation.objects.all()
     serializer_class = VacationSerializer
-    
-    
+
+
 def calendar(request):
     # Get the current date and the start of the next month
     today = datetime.date.today()

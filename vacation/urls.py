@@ -7,4 +7,3 @@ urlpatterns = [
     path('vacation/<int:pk>/', VacationDetail.as_view(), name='vacation_detail'),
     path('calendar/', calendar, name='calendar'),
 ]
-
