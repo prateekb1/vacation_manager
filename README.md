@@ -30,22 +30,100 @@ pipenv shell
 pip install -r requirements.txt
 ```
 
+### 4 Installing MYSQL
+```bash
+sudo apt update
+```
+```bash
+sudo apt install mysql-server
+```
+```bash
+sudo systemctl start mysql.service
+```
+#### Configuring MySQL
+- Open up the MySQL prompt
+```bash
+sudo mysql
+```
+- Then run the following ALTER USER command to change the root user’s authentication method to one that uses a password.
+```bash
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+- To exit mysql prompt
+```bash
+exit
+```
+- This will take you through a series of prompts where you can make some changes to your MySQL installation’s security options.
+```bash
+sudo mysql_secure_installation
+```
+- Then go back to using the default authentication method using this command
+```bash
+ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
+```
+```bash
+exit
+```
+
+### 5 Setup MySQL for Project
+
+- In command prompt
+
+```bash
+$ mysql -u root -p
+Enter password: *******
+```
+
+```bash
+mysql> create database my_vacation
+```
+
+- Use this command to check the databases
+
+```bash
+mysql> show databases;
+```
+
+### 4 MySQL database setup for this project
+
+- Open project in vscode with 'code .'
+- Open folder vacation_manager then open settings.py file
+- Inside settings.py file go to line where `DATABASE` is mentioned
+- Replace details in this with yours:
+
+````DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'your_database_name',
+        'USER': 'root',
+        'PASSWORD': 'your_root_password',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}```
+
 ### 4 Running on server
 
 ```bash
 python manage.py runserver
-```
+````
 
 ### 5 API links for data
 
 Go to this link it has all the holidays in json form
 
 ```bash
-http://127.0.0.1:3000/api/vacation/
+http://127.0.0.1:8000/api/vacation/
+```
+
+We can got to a particular holiday by its ID
+
+```bash
+http://127.0.0.1:3000/api/calendar/2  # '2' can be any ID
 ```
 
 For calendar go to this link
 
 ```bash
-
+http://127.0.0.1:8000/api/calendar/
 ```
