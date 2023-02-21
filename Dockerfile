@@ -1,26 +1,23 @@
-# base image  
-FROM python:3.8   
-# setup environment variable  
-ENV DockerHOME=/home/app/webapp  
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim-buster
 
-# set work directory  
-RUN mkdir -p $DockerHOME  
+# Set the working directory to /app
+WORKDIR /app
 
-# where your code lives  
-WORKDIR $DockerHOME  
+# Copy the requirements file to the container
+COPY requirements.txt /app/
 
-# set environment variables  
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1  
+# Install any needed packages specified in requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-# install dependencies  
-RUN pip install --upgrade pip  
+# Copy the current directory contents into the container at /app
+COPY . /app/
 
-# copy whole project to your docker home directory. 
-COPY . $DockerHOME  
-# run this command to install all dependencies  
-RUN pip install -r requirements.txt  
-# port where the Django app runs  
-EXPOSE 8000  
-# start server  
-CMD python manage.py runserver  
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+
+# Expose port 8000
+EXPOSE 8000
+
+# Start the Django development server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
