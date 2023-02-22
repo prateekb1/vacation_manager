@@ -127,20 +127,14 @@ python manage.py runserver
 
 ### 9 API links for data
 
-Go to this link it has all the holidays in json form
+Go to this link it has all the holidays:
 
 ```bash
 http://127.0.0.1:8000/api/vacation/
 ```
 
-We can got to a particular holiday by its ID
+We can got to a particular holiday by its name on:
 
 ```bash
-http://127.0.0.1:3000/api/calendar/2  # '2' can be any ID
-```
-
-For calendar go to this link
-
-```bash
-http://127.0.0.1:8000/api/calendar/
+http://127.0.0.1:8000/api/vacation/search/?name=Holi  # After the name we can put the name of the holiday
 ```

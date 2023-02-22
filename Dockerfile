@@ -1,23 +1,19 @@
-# Use an official Python runtime as a parent image
-FROM python:3.8-slim-buster
+FROM python:3.8
 
-# Set the working directory to /app
-WORKDIR /app
+ENV PYTHONUNBUFFERED 1
 
-# Copy the requirements file to the container
-COPY requirements.txt /app/
+RUN mkdir /code
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+WORKDIR /code
 
-# Copy the current directory contents into the container at /app
-COPY . /app/
+COPY requirements.txt /code/
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
+RUN pip install -r requirements.txt
 
-# Expose port 8000
-EXPOSE 8000
+COPY . /code/
 
-# Start the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# # Expose port 8000
+# EXPOSE 8000
+
+# # Start the Django development server
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
